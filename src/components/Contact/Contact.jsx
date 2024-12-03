@@ -2,11 +2,11 @@ import { IoPersonSharp } from 'react-icons/io5';
 import { MdLocalPhone } from 'react-icons/md';
 
 import style from './Contact.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contactsSlice';
 
-const Contact = ({ id, name, phone, onDelBtn }) => {
-  const handleDeleteContact = () => {
-    onDelBtn(id);
-  };
+const Contact = ({ id, name, phone }) => {
+  const dispatch = useDispatch();
 
   return (
     <div className={style.wrap}>
@@ -23,7 +23,7 @@ const Contact = ({ id, name, phone, onDelBtn }) => {
 
       <button
         className={style.deleteBtn}
-        onClick={handleDeleteContact}
+        onClick={() => dispatch(deleteContact(id))}
         type="button"
       >
         Delete
